@@ -14,14 +14,36 @@ export default function operate(numeroUno, numeroDos, operador) {
     console.log(response.data)
     return response.data.toString()
     });
+    return uno.plus(dos).toString()
   }
   
   
 
-  if (operador === "-") return uno.minus(dos).toString()
+  if (operador === "-") {
+    axios.get(baseURL + "?operando1="+numeroUno+"&operando2="+numeroDos+"&operacion=resta").then((response) => {
+      console.log("entro al axios")
+      console.log(response.data)
+      return response.data.toString()
+      });
+    return uno.minus(dos).toString()
+  }
 
-  if (operador === "x") return uno.times(dos).toString()
+  if (operador === "x") {
+    axios.get(baseURL + "?operando1="+numeroUno+"&operando2="+numeroDos+"&operacion=multiplicacion").then((response) => {
+      console.log("entro al axios")
+      console.log(response.data)
+      return response.data.toString()
+      });
+      return uno.times(dos).toString()
+  }
 
-  if (operador === "/") return uno.div(dos).toString()
+  if (operador === "/") {
+    axios.get(baseURL + "?operando1="+numeroUno+"&operando2="+numeroDos+"&operacion=division").then((response) => {
+      console.log("entro al axios")
+      console.log(response.data)
+      return response.data.toString()
+      });
+      return uno.div(dos).toString()
+  }
 
 }

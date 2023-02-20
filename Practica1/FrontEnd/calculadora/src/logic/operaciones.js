@@ -1,5 +1,5 @@
 import Big from "big.js"
-import operate from "./operate"
+import operate from "./operate.js"
 import isNumber from "./isNumber"
 
 export default function operaciones(estado, nombreDeBoton) {
