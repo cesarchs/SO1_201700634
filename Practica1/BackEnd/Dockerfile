@@ -16,7 +16,7 @@ COPY . .
 #RUN cd /practica1back && go build main.go
 
 #DOCKER COMPOUSE --------------------
-EXPOSE 4000
+EXPOSE 8080
 
 #corro el back-end
 CMD ["go","run","main.go"]
