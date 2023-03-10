@@ -1,10 +1,20 @@
 package main
 
 import (
+	"database/sql"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strconv"
 )
+
+type Usuario struct {
+	ID       int    `json:"id"`
+	Nombre   string `json:"nombre"`
+	Apellido string `json:"apellido"`
+}
+
+var db *sql.DB
 
 type Calculadora struct {
 	Operando1 float64
@@ -60,6 +70,28 @@ func CalculadoraHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	db, _ = sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/database")
+	defer db.Close()
 	http.HandleFunc("/calculadora", CalculadoraHandler)
 	http.ListenAndServe(":8080", nil)
+}
+
+func getUsuarios(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var usuarios []Usuario
+
+	rows, err := db.Query("SELECT * FROM usuarios")
+	if err != nil {
+		fmt.Fprintf(w, "Error en la consulta")
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var usuario Usuario
+		rows.Scan(&usuario.ID, &usuario.Nombre, &usuario.Apellido)
+		usuarios = append(usuarios, usuario)
+	}
+
+	json.NewEncoder(w).Encode(usuarios)
 }
