@@ -2,20 +2,20 @@ version: "3.8"
 
 services:
 
-  database:
+  #database:
     #build:
     #  context: ./Mongodb
     #  dockerfile: Dockerfile
-    container_name: database #aqui el nombre puede ser cualquiera
-    restart: always           #cuando se vaya a mimir el contenedor se reiniciara xd
-    image: mysql:latest #aqui cambiamos xd
-    environment:
-      MYSQL_ROOT_PASSWORD: '12345'
-    volumes:
-      - ./db/data:/data/db   #lo de backup con docker volumen
+    #container_name: database #aqui el nombre puede ser cualquiera
+    #restart: always           #cuando se vaya a mimir el contenedor se reiniciara xd
+    #image: mysql:latest #aqui cambiamos xd
+    #environment:
+    #  MYSQL_ROOT_PASSWORD: '12345'
+    #volumes:
+    #  - ./db/data:/data/db   #lo de backup con docker volumen
       
-    ports:
-      - "27017:27017"     #puertos
+    #ports:
+    #  - "27017:27017"     #puertos
     
 
 #----------------------------------------------------------------------------------
@@ -26,13 +26,13 @@ services:
     #  dockerfile: Dockerfile
     container_name: backend #puede ser cualquier nombre
     restart: always           #cuando se vaya a mimir el contenedor se reiniciara xd
-    image: cesarchs/backend_p1_201700634 #aqui cambiamos xd
+    image: cesarchs17/backend_p1_201700634 #aqui cambiamos xd
     ports:
-      - "4000:4000"
-    depends_on:
-      - database
-    links:
-      - database
+      - "8080:8080"
+    #depends_on:
+    #  - database
+    #links:
+    #  - database
 
 
   frontend:
@@ -41,7 +41,7 @@ services:
     #  dockerfile: Dockerfile
     container_name: frontend #puede ser cualquier nombre
     restart: always           #cuando se vaya a mimir el contenedor se reiniciara xd
-    image: cesarchs/frontend_p1_201700634 #aqui cambiamos xd
+    image: cesarchs17/frontend_p1_201700634 #aqui cambiamos xd
     ports:
       - "3000:3000"
     depends_on:
