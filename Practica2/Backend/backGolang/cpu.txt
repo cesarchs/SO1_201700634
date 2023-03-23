@@ -1,0 +1,20 @@
+0=int
+00=long
+
+{//no visible
+
+
+[{	"PID":0,
+	"Nombre":"a",
+	"Usuario":0,
+	"Estado":0,
+	"Ram":00,
+	"Hijos":[{"PID_hijo":0,"Nombre_hijo":"a"},{},{}]  
+},{},{},{}],
+	"ejecucion":0,
+	"suspendidos":0,
+	"detenidos":0,
+	"zombie":0
+
+
+}//no visible
