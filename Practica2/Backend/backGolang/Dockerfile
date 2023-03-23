@@ -2,9 +2,10 @@
 FROM golang:1.18 AS builder
 
 RUN apt-get update
+RUN apt install sysstat -y
 
 #defino mi espacio de trabajo
-WORKDIR /practica1back
+WORKDIR /practica2back
 
 COPY go.mod .
 COPY go.sum .
@@ -16,7 +17,7 @@ COPY . .
 #RUN cd /practica1back && go build main.go
 
 #DOCKER COMPOUSE --------------------
-EXPOSE 8080
+EXPOSE 8000
 
 #corro el back-end
 CMD ["go","run","main.go"]
